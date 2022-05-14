@@ -11,18 +11,6 @@ export const Container = styled.section`
     display: none;
   }
 
-  strong {
-    font-size: 2rem;
-    font-weight: 500;
-    display: block;
-    margin-top: 0.6rem;
-  }
-
-  .highlighted {
-    background-color: var(--green);
-    color: var(--shape);
-  }
-
   div {
     background-color: var(--shape);
     border-radius: 0.3rem;
@@ -33,6 +21,23 @@ export const Container = styled.section`
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    strong {
+      font-size: 2rem;
+      font-weight: 500;
+      display: block;
+      margin-top: 0.6rem;
+      color: var(--text-title);
+    }
+  }
+
+  .highlighted {
+    background-color: var(--green);
+    color: var(--shape);
+
+    strong {
+      color: var(--shape);
     }
   }
 
