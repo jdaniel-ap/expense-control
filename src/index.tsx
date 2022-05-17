@@ -1,7 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { createServer } from 'miragejs';
 import { GlobalStyle } from './styles/global';
+
+createServer({
+  routes() {
+    this.namespace = 'api';
+
+    this.get('transactions', () => [
+      {
+        id: 1,
+        amount: 400,
+        type: 'deposit',
+        category: 'Food',
+        createdAt: new Date(),
+      },
+    ]);
+  },
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
