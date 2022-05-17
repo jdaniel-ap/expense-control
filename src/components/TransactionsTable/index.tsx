@@ -13,13 +13,13 @@ export function TransactionsTable() {
         <tbody>
           <tr>
             <td>Desarrollo de website</td>
-            <td className='income'>R$ 12.800,00</td>
+            <td className='income'>$ 12.800,00</td>
             <td>Venda</td>
             <td>13/04/2021</td>
           </tr>
           <tr>
             <td>Desarrollo de website</td>
-            <td className='outcome'>R$ 12.800,00</td>
+            <td className='outcome'>$ 12.800,00</td>
             <td>Venda</td>
             <td>13/04/2021</td>
           </tr>

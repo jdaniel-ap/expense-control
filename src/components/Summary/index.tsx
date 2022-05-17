@@ -9,24 +9,24 @@ export function Summary() {
     <Container>
       <div>
         <header>
-          <span>Entradas</span>
-          <img src={incomeLogo} alt='' />
+          <span>Income</span>
+          <img src={incomeLogo} alt='Orbitc' />
         </header>
-        <strong>R$ 17.400,00</strong>
+        <strong>$ 17.400,00</strong>
       </div>
       <div>
         <header>
-          <span>Entradas</span>
+          <span>Outcome</span>
           <img src={outcomeLogo} alt='' />
         </header>
-        <strong>R$ 1.259,00</strong>
+        <strong>$ 1.259,00</strong>
       </div>
       <div className='highlighted'>
         <header>
-          <span>Entradas</span>
+          <span>Total</span>
           <img src={totalLogo} alt='' />
         </header>
-        <strong>R$ 16.141,00</strong>
+        <strong>$ 16.141,00</strong>
       </div>
     </Container>
   );
