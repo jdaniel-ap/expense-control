@@ -71,7 +71,7 @@ export const GlobalStyle = createGlobalStyle`
     max-width: 576px;
     width: 100%;
     background-color: var(--background);
-    padding: 3rem;
+    padding: 2rem;
     position: relative;
     border-radius: 0.25rem;
 

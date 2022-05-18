@@ -15,16 +15,21 @@ interface ModalProps {
 
 function Modal({ isModalOpen, onRequestClose }: ModalProps) {
   const [type, setType] = useState('');
+
+  const handleCloseModal = () => {
+    setType('');
+    onRequestClose();
+  };
   return (
     <ReactModal
       isOpen={isModalOpen}
-      onRequestClose={onRequestClose}
+      onRequestClose={handleCloseModal}
       closeTimeoutMS={200}
       overlayClassName='react-modal-overlay'
       className='react-modal-content'
     >
       <Container onSubmit={(event) => event.preventDefault()}>
-        <button className='react-modal-close' onClick={onRequestClose}>
+        <button className='react-modal-close' onClick={handleCloseModal}>
           <img className='close-btn' src={closeIcon} alt='Close modal' />
         </button>
         <h2>New Transaction</h2>

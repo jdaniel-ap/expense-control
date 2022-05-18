@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { transparentize } from 'polished';
 
 interface ButtonProps {
@@ -11,6 +11,13 @@ const colors = {
   red: '#E52E4D',
 };
 
+const mobileHeight = css`
+  @media (max-width: 600px) {
+    height: 5rem;
+    font-size: 1.2rem;
+  }
+`;
+
 export const Container = styled.form`
   display: flex;
   flex-direction: column;
@@ -22,11 +29,14 @@ export const Container = styled.form`
   }
 
   input {
-    padding: 1rem;
+    height: 3.5rem;
     border-radius: 0.3rem;
     border: 1px solid var(--light-gray);
     margin-bottom: 1rem;
+    padding: 0 1rem;
     background: var(--gray);
+
+    ${mobileHeight}
   }
 
   .add-task-btn {
@@ -41,9 +51,14 @@ export const Container = styled.form`
     &:hover {
       filter: brightness(0.95);
     }
+
+    @media (max-width: 600px) {
+      height: 4rem;
+    }
   }
 
   .button-group {
+    height: 3.5rem;
     margin-bottom: 1rem;
     display: flex;
     gap: 0.5rem;
@@ -51,6 +66,8 @@ export const Container = styled.form`
     img {
       width: 1.5rem;
     }
+
+    ${mobileHeight}
   }
 `;
 
@@ -71,4 +88,6 @@ export const Button = styled.button<ButtonProps>`
   justify-content: center;
   gap: 0.8rem;
   transition: 0.2s;
+
+  ${mobileHeight}
 `;
