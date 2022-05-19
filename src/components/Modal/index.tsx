@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import ReactModal from 'react-modal';
 import closeIcon from '../../assets/close.svg';
 import incomeIcon from '../../assets/income.svg';
 import outcomeIcon from '../../assets/outcome.svg';
+import { api } from '../../services/api';
 
 import { Button, Container } from './styles';
 
@@ -13,12 +14,38 @@ interface ModalProps {
   onRequestClose: () => void;
 }
 
+interface TransactionData {
+  category: string;
+  amount?: number;
+  title: string;
+  type: 'deposit' | 'withdrawal';
+  createdAt: string;
+}
+
 function Modal({ isModalOpen, onRequestClose }: ModalProps) {
-  const [type, setType] = useState('');
+  const [transactionData, setTransactionData] = useState<TransactionData>({
+    category: '',
+    amount: undefined,
+    title: '',
+    type: 'deposit',
+    createdAt: new Date().toDateString(),
+  });
+
+  const saveTransactionData = async (event: FormEvent) => {
+    event.preventDefault();
+
+    api.post('/transactions', transactionData);
+  };
 
   const handleCloseModal = () => {
-    setType('');
     onRequestClose();
+  };
+
+  const handleTransactionData = ({
+    currentTarget,
+  }: FormEvent<HTMLInputElement>) => {
+    const { name, value } = currentTarget;
+    setTransactionData((state) => ({ ...state, [name]: value }));
   };
   return (
     <ReactModal
@@ -28,31 +55,52 @@ function Modal({ isModalOpen, onRequestClose }: ModalProps) {
       overlayClassName='react-modal-overlay'
       className='react-modal-content'
     >
-      <Container onSubmit={(event) => event.preventDefault()}>
+      <Container onSubmit={saveTransactionData}>
         <button className='react-modal-close' onClick={handleCloseModal}>
           <img className='close-btn' src={closeIcon} alt='Close modal' />
         </button>
         <h2>New Transaction</h2>
-        <input type='text' placeholder='Title' />
-        <input type='number' placeholder='Amount' />
+        <input
+          name='title'
+          type='text'
+          placeholder='Title'
+          onChange={handleTransactionData}
+        />
+        <input
+          name='amount'
+          type='number'
+          placeholder='Amount'
+          onChange={handleTransactionData}
+        />
         <div className='button-group'>
           <Button
-            isActive={type === 'deposit'}
+            type='button'
+            isActive={transactionData.type === 'deposit'}
             activeColor='green'
-            onClick={() => setType('deposit')}
+            onClick={() =>
+              setTransactionData((state) => ({ ...state, type: 'deposit' }))
+            }
           >
             <img src={incomeIcon} alt='income' /> Income
           </Button>
           <Button
-            isActive={type === 'withdrawal'}
+            type='button'
+            isActive={transactionData.type === 'withdrawal'}
             activeColor='red'
-            onClick={() => setType('withdrawal')}
+            onClick={() =>
+              setTransactionData((state) => ({ ...state, type: 'withdrawal' }))
+            }
           >
             <img src={outcomeIcon} alt='outcome' />
             Outcome
           </Button>
         </div>
-        <input type='text' placeholder='Category' />
+        <input
+          name='category'
+          type='text'
+          placeholder='Category'
+          onChange={handleTransactionData}
+        />
         <button type='submit' className='add-task-btn'>
           Add
         </button>

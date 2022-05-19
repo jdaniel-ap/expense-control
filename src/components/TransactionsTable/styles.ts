@@ -16,10 +16,10 @@ export const Container = styled.section`
     }
 
     tr {
-      .income {
+      .deposit {
         color: var(--green);
       }
-      .outcome {
+      .withdrawal {
         color: var(--red);
       }
     }
