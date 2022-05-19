@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { Header } from './components/Header';
 import Modal from './components/Modal';
+import { AppContextProvider } from './Context';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,11 +15,11 @@ function App() {
     setIsModalOpen(false);
   };
   return (
-    <div className='App'>
+    <AppContextProvider>
       <Header onOpenModal={handleOpenModal} />
       <Modal isModalOpen={isModalOpen} onRequestClose={handleCloseModal} />
       <Dashboard />
-    </div>
+    </AppContextProvider>
   );
 }
 

@@ -51,6 +51,7 @@ export const CardBox = styled.div`
   border-radius: 0.3rem;
 
   margin: 1rem 2rem;
+
   div {
     display: flex;
     justify-content: space-between;
@@ -70,5 +71,9 @@ export const CardBox = styled.div`
       color: var(--text-body);
       font-size: 1rem;
     }
+  }
+
+  @media (min-width: 599px) {
+    display: none;
   }
 `;
