@@ -3,6 +3,7 @@ import { TransactionData } from '../../types';
 import { api } from '../../services/api';
 
 import { Container } from './styles';
+import { Card } from './Card';
 
 export function TransactionsTable() {
   const [transactions, setTransactions] = useState<TransactionData[]>([]);
@@ -12,6 +13,7 @@ export function TransactionsTable() {
       .get('transactions')
       .then((res) => setTransactions(res.data.transactions));
   }, []);
+
   return (
     <Container>
       <table>
@@ -44,6 +46,16 @@ export function TransactionsTable() {
           ))}
         </tbody>
       </table>
+      {transactions?.map((item) => (
+        <Card
+          key={item.id}
+          title={item.title}
+          amount={item.amount}
+          category={item.category}
+          createdAt={item.createdAt}
+          type={item.type}
+        />
+      ))}
     </Container>
   );
 }

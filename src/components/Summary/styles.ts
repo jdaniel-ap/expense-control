@@ -16,6 +16,9 @@ export const Container = styled.section`
     border-radius: 0.3rem;
     padding: 1.5rem 2rem;
     min-width: 20rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     header {
       display: flex;
@@ -43,5 +46,7 @@ export const Container = styled.section`
 
   @media (max-width: 720px) {
     padding: 0 2rem;
+
+    height: 12rem;
   }
 `;
