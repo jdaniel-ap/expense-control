@@ -76,7 +76,7 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 0.25rem;
 
     @media (max-width: 600px) {
-      border-radius: 1rem;
+      border-radius: 1rem 1rem 0 0;
     }
   }
 

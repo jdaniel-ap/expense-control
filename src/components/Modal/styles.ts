@@ -13,8 +13,8 @@ const colors = {
 
 const mobileHeight = css`
   @media (max-width: 600px) {
-    height: 5rem;
-    font-size: 1.2rem;
+    height: 4.5rem;
+    font-size: 1.1rem;
   }
 `;
 
