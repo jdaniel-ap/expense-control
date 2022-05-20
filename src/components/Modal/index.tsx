@@ -59,7 +59,11 @@ function Modal({ isModalOpen, onRequestClose }: ModalProps) {
       className='react-modal-content'
     >
       <Container onSubmit={saveTransactionData}>
-        <button className='react-modal-close' onClick={handleCloseModal}>
+        <button
+          className='react-modal-close'
+          type='button'
+          onClick={handleCloseModal}
+        >
           <img className='close-btn' src={closeIcon} alt='Close modal' />
         </button>
         <h2>New Transaction</h2>
