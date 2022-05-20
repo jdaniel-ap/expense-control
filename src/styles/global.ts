@@ -61,13 +61,14 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     align-items: center;
     justify-content: center;
-
+    
     @media (max-width: 600px) {
       align-items: flex-end;
     }
   }
-
+  
   .react-modal-content {
+    animation: showsUp 0.5s linear;
     max-width: 576px;
     width: 100%;
     background-color: var(--background);
@@ -77,6 +78,15 @@ export const GlobalStyle = createGlobalStyle`
 
     @media (max-width: 600px) {
       border-radius: 1rem 1rem 0 0;
+    }
+
+    @keyframes showsUp {
+      from {
+        transform: translateY(100rem);
+      }
+      to {
+        transform: translateY(0);
+      }
     }
   }
 
