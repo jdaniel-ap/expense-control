@@ -1,9 +1,9 @@
-import { FormEvent, useState, useContext } from 'react';
+import { FormEvent, useState } from 'react';
 import ReactModal from 'react-modal';
 import closeIcon from '../../assets/close.svg';
 import incomeIcon from '../../assets/income.svg';
 import outcomeIcon from '../../assets/outcome.svg';
-import { AppContext } from '../../context';
+import { useTransactions } from '../../hooks/useTransactions';
 
 import { Button, Container } from './styles';
 
@@ -29,7 +29,7 @@ const defaultValues: TransactionData = {
 };
 
 function Modal({ isModalOpen, onRequestClose }: ModalProps) {
-  const { createTransaction } = useContext(AppContext);
+  const { createTransaction } = useTransactions();
   const [transactionData, setTransactionData] = useState(defaultValues);
 
   const saveTransactionData = async (event: FormEvent) => {

@@ -1,4 +1,10 @@
-import { createContext, ReactNode, useEffect, useState } from 'react';
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 import { api } from '../services/api';
 import { TransactionData } from '../types';
 
@@ -41,3 +47,9 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
     </AppContext.Provider>
   );
 }
+
+export const useTransactions = () => {
+  const context = useContext(AppContext);
+
+  return context;
+};
