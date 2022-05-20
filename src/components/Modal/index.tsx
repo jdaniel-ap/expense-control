@@ -21,19 +21,23 @@ interface TransactionData {
   type: 'deposit' | 'withdrawal';
 }
 
+const defaultValues: TransactionData = {
+  category: '',
+  amount: 0,
+  title: '',
+  type: 'deposit',
+};
+
 function Modal({ isModalOpen, onRequestClose }: ModalProps) {
   const { createTransaction } = useContext(AppContext);
-  const [transactionData, setTransactionData] = useState<TransactionData>({
-    category: '',
-    amount: 0,
-    title: '',
-    type: 'deposit',
-  });
+  const [transactionData, setTransactionData] = useState(defaultValues);
 
   const saveTransactionData = async (event: FormEvent) => {
     event.preventDefault();
 
-    createTransaction(transactionData);
+    await createTransaction(transactionData);
+    onRequestClose();
+    setTransactionData(defaultValues);
   };
 
   const handleCloseModal = () => {
