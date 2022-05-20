@@ -1,9 +1,9 @@
-import React, { FormEvent, useState } from 'react';
+import { FormEvent, useState, useContext } from 'react';
 import ReactModal from 'react-modal';
 import closeIcon from '../../assets/close.svg';
 import incomeIcon from '../../assets/income.svg';
 import outcomeIcon from '../../assets/outcome.svg';
-import { api } from '../../services/api';
+import { AppContext } from '../../context';
 
 import { Button, Container } from './styles';
 
@@ -16,15 +16,16 @@ interface ModalProps {
 
 interface TransactionData {
   category: string;
-  amount?: number;
+  amount: number;
   title: string;
   type: 'deposit' | 'withdrawal';
 }
 
 function Modal({ isModalOpen, onRequestClose }: ModalProps) {
+  const { createTransaction } = useContext(AppContext);
   const [transactionData, setTransactionData] = useState<TransactionData>({
     category: '',
-    amount: undefined,
+    amount: 0,
     title: '',
     type: 'deposit',
   });
@@ -32,7 +33,7 @@ function Modal({ isModalOpen, onRequestClose }: ModalProps) {
   const saveTransactionData = async (event: FormEvent) => {
     event.preventDefault();
 
-    api.post('/transactions', transactionData);
+    createTransaction(transactionData);
   };
 
   const handleCloseModal = () => {

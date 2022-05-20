@@ -6,10 +6,23 @@ interface AppContextProviderProps {
   children: ReactNode;
 }
 
-export const AppContext = createContext<TransactionData[]>([]);
+type TransactionInput = Omit<TransactionData, 'id' | 'createdAt'>;
+
+interface TransactionContextValues {
+  transactions: TransactionData[];
+  createTransaction: (transaction: TransactionInput) => void;
+}
+
+export const AppContext = createContext<TransactionContextValues>(
+  {} as TransactionContextValues
+);
 
 export function AppContextProvider({ children }: AppContextProviderProps) {
   const [transactions, setTransactions] = useState<TransactionData[]>([]);
+
+  const createTransaction = (transaction: TransactionInput) => {
+    api.post('/transactions', transaction);
+  };
 
   useEffect(() => {
     api
@@ -18,6 +31,8 @@ export function AppContextProvider({ children }: AppContextProviderProps) {
   }, []);
 
   return (
-    <AppContext.Provider value={transactions}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ transactions, createTransaction }}>
+      {children}
+    </AppContext.Provider>
   );
 }
