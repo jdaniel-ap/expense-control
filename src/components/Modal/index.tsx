@@ -19,7 +19,6 @@ interface TransactionData {
   amount?: number;
   title: string;
   type: 'deposit' | 'withdrawal';
-  createdAt: string;
 }
 
 function Modal({ isModalOpen, onRequestClose }: ModalProps) {
@@ -28,7 +27,6 @@ function Modal({ isModalOpen, onRequestClose }: ModalProps) {
     amount: undefined,
     title: '',
     type: 'deposit',
-    createdAt: new Date().toDateString(),
   });
 
   const saveTransactionData = async (event: FormEvent) => {

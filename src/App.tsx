@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Dashboard } from './components/Dashboard';
 import { Header } from './components/Header';
 import Modal from './components/Modal';
-import { AppContextProvider } from './Context';
+import { AppContextProvider } from './context';
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
